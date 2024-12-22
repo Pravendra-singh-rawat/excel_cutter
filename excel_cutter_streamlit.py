@@ -1,9 +1,9 @@
 import streamlit as st
 import pandas as pd
 import os
+import zipfile
 import tempfile
-import shutil
-import datetime
+from datetime import datetime
 
 @st.cache_data
 def process_excel(file):
@@ -59,10 +59,9 @@ def save_files_by_column(sheets_data, column):
 
     # Create a ZIP file for all generated files
     zip_file = os.path.join(output_dir, "filtered_files.zip")
-    with tempfile.TemporaryDirectory() as temp_zip_dir:
+    with zipfile.ZipFile(zip_file, "w") as zf:
         for file_path in output_files.values():
-            shutil.copy(file_path, temp_zip_dir)
-        shutil.make_archive(zip_file.replace(".zip", ""), 'zip', temp_zip_dir)
+            zf.write(file_path, os.path.basename(file_path))
 
     return output_files, zip_file, summary
 
