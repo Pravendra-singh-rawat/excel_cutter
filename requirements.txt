@@ -1,5 +1,6 @@
-streamlit==1.26.0
-pandas==1.5.3
-openpyxl==3.1.2
-xlsxwriter==3.1.1
-pillow==<compatible_version>
+streamlit==1.25.0  # Replace with the latest version if needed
+pandas==2.1.1  # Replace with your required version
+openpyxl==3.1.2  # Needed for reading Excel files
+XlsxWriter==3.1.0  # Needed for writing Excel files
+shutil  # Part of the Python standard library
+
